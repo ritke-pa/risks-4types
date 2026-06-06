@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>리스크에 대비하는 4가지 방식 — Decision Blue × 메리츠화재 RCM</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Sans+KR:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --ink: #0f0e0b;
+  --paper: #f4efe5;
+  --cream: #ece6d8;
+  --warm: #e2d9c4;
+  --accent: #b84a28;
+  --muted: #8a8070;
+  --light: #cdc8b8;
+  --meritz: #003087;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Noto Sans KR', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── 인트로 ── */
+#intro {
+  display: grid;
+  grid-template-columns: 55% 45%;
+  min-height: 100vh;
+}
+#intro.hidden { display: none; }
+
+.intro-left {
+  background: var(--paper);
+  border-right: 1px solid var(--warm);
+  padding: 52px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.intro-left::before {
+  content: 'DB';
+  position: absolute;
+  bottom: -60px;
+  right: -24px;
+  font-family: 'Playfair Display', serif;
+  font-size: 300px;
+  font-weight: 900;
+  color: rgba(0,0,0,0.03);
+  line-height: 1;
+  pointer-events: none;
+  letter-spacing: -12px;
+}
+
+.collab-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.collab-name {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.collab-sep {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--light);
+}
+.collab-partner {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.intro-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 0 32px;
+}
+
+.intro-kicker {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--light);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.intro-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  margin-bottom: 36px;
+}
+.intro-title .light {
+  font-weight: 300;
+  font-style: italic;
+  color: var(--muted);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.82em;
+  display: block;
+  letter-spacing: 0em;
+  margin-top: 4px;
+}
+
+.intro-copy {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 2;
+  color: var(--muted);
+  max-width: 360px;
+  padding-left: 16px;
+  border-left: 1px solid var(--light);
+}
+
+.intro-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-top: 8px;
+  border-top: 1px solid var(--warm);
+}
+.stat-block { }
+.stat-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-lbl {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ink);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* 오른쪽 */
+.intro-right {
+  background: var(--ink);
+  padding: 52px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.intro-right-top { border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 36px; margin-bottom: 36px; }
+
+.section-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.scenario-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.scenario-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.6;
+}
+.s-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+  min-width: 16px;
+  padding-top: 3px;
+}
+.s-label { font-weight: 600; font-size: 13px; color: #fff; }
+.s-desc { font-size: 12px; color: rgba(255,255,255,0.5); }
+
+.type-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+.type-chip {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 12px 14px;
+}
+.type-chip-code {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+.type-chip-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.88);
+  letter-spacing: -0.01em;
+}
+
+.btn-start {
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  padding: 20px 28px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  transition: background 0.2s;
+}
+.btn-start:hover { background: #1e1c16; }
+.btn-arrow { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; }
+
+/* ── 퀴즈 ── */
+#quiz {
+  display: none;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+#quiz.active { display: grid; }
+
+.quiz-sidebar {
+  background: var(--ink);
+  padding: 48px 32px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+.sidebar-top {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.18);
+  text-transform: uppercase;
+  margin-bottom: auto;
+}
+.sidebar-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+.s-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,0.15);
+  letter-spacing: 0.04em;
+  transition: color 0.3s;
+}
+.s-step.done { color: rgba(255,255,255,0.3); }
+.s-step.active { color: rgba(255,255,255,0.85); }
+.s-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+.s-step.done .s-dot { background: rgba(255,255,255,0.3); }
+.s-step.active .s-dot { background: var(--accent); box-shadow: 0 0 6px rgba(184,74,40,0.5); }
+
+.sidebar-bignum {
+  margin-top: 40px;
+  font-family: 'Playfair Display', serif;
+  font-size: 88px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.04);
+  line-height: 1;
+  letter-spacing: -6px;
+}
+
+/* 퀴즈 메인 */
+.quiz-main {
+  background: var(--paper);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.quiz-top-bar {
+  padding: 32px 64px;
+  border-bottom: 1px solid var(--warm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.progress-track {
+  flex: 1;
+  height: 1px;
+  background: var(--warm);
+  margin: 0 32px;
+  position: relative;
+}
+.progress-fill {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  background: var(--ink);
+  transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.q-counter {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.quiz-body {
+  flex: 1;
+  padding: 64px 64px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 640px;
+}
+
+.q-scenario-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease 0.05s;
+}
+
+.q-scene {
+  background: var(--cream);
+  border-left: 3px solid var(--ink);
+  padding: 22px 26px;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-style: normal;
+  font-weight: 900;
+  line-height: 1.55;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+}
+
+.q-question {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 2.8vw, 34px);
+  font-weight: 900;
+  line-height: 1.28;
+  color: var(--ink);
+  margin-bottom: 44px;
+  letter-spacing: -0.025em;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease 0.18s, transform 0.4s ease 0.18s;
+}
+
+.q-scenario-tag.vis,
+.q-scene.vis,
+.q-question.vis { opacity: 1; transform: translateY(0); }
+
+.options {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--warm);
+}
+
+.option {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--warm);
+  padding: 18px 0;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  transition: all 0.16s ease;
+  opacity: 0;
+  transform: translateY(8px);
+}
+.option.vis { opacity: 1; transform: translateY(0); }
+.option:hover { padding-left: 10px; }
+.option:hover .opt-marker { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.option:hover .opt-main { color: var(--ink); }
+.option.selected { padding-left: 10px; }
+.option.selected .opt-marker { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.option.selected .opt-main { color: var(--ink); }
+
+.opt-marker {
+  min-width: 26px; height: 26px;
+  border: 1px solid var(--light);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  flex-shrink: 0;
+  transition: all 0.16s ease;
+}
+.opt-text { display: flex; flex-direction: column; gap: 2px; }
+.opt-main {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: -0.01em;
+  transition: color 0.16s;
+}
+.opt-sub {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--light);
+  line-height: 1.5;
+}
+
+/* ── 결과 ── */
+#result { display: none; }
+#result.active { display: block; }
+
+.result-hero {
+  display: grid;
+  grid-template-columns: 52% 48%;
+  min-height: 70vh;
+}
+
+.result-left {
+  background: var(--ink);
+  padding: 56px 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.result-bg-letter {
+  position: absolute;
+  bottom: -30px; right: -15px;
+  font-family: 'Playfair Display', serif;
+  font-size: 240px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.03);
+  line-height: 1;
+  pointer-events: none;
+  letter-spacing: -8px;
+}
+
+.result-collab {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: rgba(255,255,255,0.18);
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.result-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.result-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(44px, 5.5vw, 68px);
+  font-weight: 900;
+  color: var(--paper);
+  line-height: 1.0;
+  letter-spacing: -0.035em;
+  margin-bottom: 10px;
+}
+.result-code {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.12em;
+  margin-bottom: 32px;
+}
+.result-desc {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 2;
+  color: rgba(255,255,255,0.45);
+  max-width: 360px;
+}
+.result-stats {
+  display: flex;
+  gap: 36px;
+  margin-top: 48px;
+}
+.rs-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.75);
+  line-height: 1;
+  margin-bottom: 5px;
+}
+.rs-lbl {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: rgba(255,255,255,0.22);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: pre-line;
+  line-height: 1.6;
+}
+
+/* 결과 오른쪽 */
+.result-right {
+  background: var(--cream);
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.insight-wrap {
+  border-left: 2px solid var(--ink);
+  padding-left: 22px;
+}
+.insight-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.insight-text {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.95;
+  color: var(--ink);
+}
+
+.cta-wrap {
+  background: var(--paper);
+  border: 1px solid var(--light);
+  padding: 28px;
+}
+.cta-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.cta-ref-id {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: var(--light);
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+.cta-text {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--ink);
+  margin-bottom: 22px;
+}
+.cta-partner-line {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+  padding: 10px 14px;
+  background: var(--cream);
+  border-left: 2px solid var(--light);
+}
+
+.btn-row { display: flex; gap: 8px; }
+.btn-cta {
+  flex: 1;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  padding: 15px 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-cta:hover { background: #1e1c16; }
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--light);
+  padding: 15px 18px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.btn-ghost:hover { border-color: var(--muted); color: var(--ink); }
+
+.result-footer {
+  background: var(--ink);
+  padding: 22px 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.rf-left {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: rgba(255,255,255,0.18);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.rf-right {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: rgba(255,255,255,0.12);
+  letter-spacing: 0.06em;
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  #intro { grid-template-columns: 1fr; }
+  .intro-left { padding: 40px 28px; min-height: 55vh; }
+  .intro-right { padding: 40px 28px; }
+  #quiz.active { grid-template-columns: 1fr; }
+  .quiz-sidebar { position: relative; height: auto; padding: 28px; }
+  .sidebar-bignum { display: none; }
+  .quiz-body { padding: 40px 28px; }
+  .quiz-top-bar { padding: 24px 28px; }
+  .result-hero { grid-template-columns: 1fr; }
+  .result-left { padding: 40px 28px; }
+  .result-right { padding: 40px 28px; }
+  .result-footer { padding: 18px 28px; flex-direction: column; gap: 6px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════ 인트로 ════ -->
+<div id="intro">
+  <div class="intro-left">
+    <div class="collab-bar">
+      <span class="collab-name">Decision Blue</span>
+      <span class="collab-sep">×</span>
+      <span class="collab-partner">메리츠화재 RCM</span>
+    </div>
+    <div class="intro-center">
+      <p class="intro-kicker">Risk Response Type · 2026</p>
+      <h1 class="intro-title">
+        리스크에<br>대비하는<br>
+        <span class="light">4가지 방식</span>
+      </h1>
+      <p class="intro-copy">리스크 앞에서 당신은 어떻게 반응합니까. 6가지 실제 상황을 통해 당신의 유형을 분석합니다.</p>
+    </div>
+    <div class="intro-bottom">
+      <div class="stat-block">
+        <div class="stat-num">591</div>
+        <div class="stat-lbl">Sessions</div>
+      </div>
+      <div class="stat-block" style="text-align:right">
+        <div class="stat-num">93.9%</div>
+        <div class="stat-lbl">Accuracy</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="intro-right">
+    <div class="intro-right-top">
+      <p class="section-tag">6가지 시나리오</p>
+      <ul class="scenario-list">
+        <li><span class="s-num">01</span><span><span class="s-label">목돈</span> <span class="s-desc">— 예상치 못한 돈이 생겼다</span></span></li>
+        <li><span class="s-num">02</span><span><span class="s-label">기회</span> <span class="s-desc">— 결정 시한 3일</span></span></li>
+        <li><span class="s-num">03</span><span><span class="s-label">지연</span> <span class="s-desc">— 6개월째 못 하고 있는 일</span></span></li>
+        <li><span class="s-num">04</span><span><span class="s-label">선택</span> <span class="s-desc">— 안전 vs 기회, 오늘까지</span></span></li>
+        <li><span class="s-num">05</span><span><span class="s-label">점검</span> <span class="s-desc">— 친구의 한마디</span></span></li>
+        <li><span class="s-num">06</span><span><span class="s-label">후회</span> <span class="s-desc">— 1년 전 그 결정</span></span></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="section-tag" style="margin-bottom:12px">4가지 리스크 유형</p>
+      <div class="type-grid">
+        <div class="type-chip"><div class="type-chip-code">Type A</div><div class="type-chip-name">타이밍 감지형</div></div>
+        <div class="type-chip"><div class="type-chip-code">Type B</div><div class="type-chip-name">분석 지연형</div></div>
+        <div class="type-chip"><div class="type-chip-code">Type C</div><div class="type-chip-name">목적 달성형</div></div>
+        <div class="type-chip"><div class="type-chip-code">Type D</div><div class="type-chip-name">리스크 회피형</div></div>
+      </div>
+    </div>
+
+    <button class="btn-start" onclick="startQuiz()">
+      유형 확인 — 약 3분
+      <span class="btn-arrow">→</span>
+    </button>
+  </div>
+</div>
+
+<!-- ════ 퀴즈 ════ -->
+<div id="quiz">
+  <div class="quiz-sidebar">
+    <div class="sidebar-top">Decision Blue × 메리츠화재 RCM</div>
+    <div class="sidebar-steps" id="sidebarSteps"></div>
+    <div class="sidebar-bignum" id="bignum">01</div>
+  </div>
+  <div class="quiz-main">
+    <div class="quiz-top-bar">
+      <span class="q-counter" id="qCounter">01 / 06</span>
+      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+      <span class="q-counter" style="opacity:0">00/00</span>
+    </div>
+    <div class="quiz-body">
+      <p class="q-scenario-tag" id="qTag"></p>
+      <p class="q-scene" id="qScene"></p>
+      <p class="q-question" id="qQuestion"></p>
+      <div class="options" id="optionsWrap"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ 결과 ════ -->
+<div id="result">
+  <div class="result-hero">
+    <div class="result-left">
+      <div class="result-bg-letter" id="resBgLetter"></div>
+      <div class="result-collab">Decision Blue × 메리츠화재 RCM</div>
+      <div>
+        <p class="result-label">당신의 유형</p>
+        <h2 class="result-name" id="resName"></h2>
+        <p class="result-code" id="resCode"></p>
+        <p class="result-desc" id="resDesc"></p>
+      </div>
+      <div class="result-stats" id="resStats"></div>
+    </div>
+    <div class="result-right">
+      <div class="insight-wrap">
+        <p class="insight-tag">Risk Insight</p>
+        <p class="insight-text" id="resInsight"></p>
+      </div>
+      <div class="cta-wrap">
+        <p class="cta-tag" id="resCtaTitle">보장 점검</p>
+        <p class="cta-text" id="resCtaText"></p>
+        <div class="cta-partner-line" id="resPartnerLine"></div>
+        <div class="cta-ref-id" id="resRefId"></div>
+        <div class="btn-row">
+          <a class="btn-cta" id="resCtaBtn" href="#" target="_blank">상담 채널 바로가기</a>
+          <button class="btn-ghost" onclick="restartQuiz()">다시 하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="result-footer">
+    <span class="rf-left">© 2026 Decision Blue × 메리츠화재 RCM</span>
+    <span class="rf-right">591 sessions · 93.9% · 20-month dataset</span>
+  </div>
+</div>
+
+<script>
+const scenarios = [
+  {
+    tag: "Scenario 01 · 목돈",
+    scene: "예상치 못한 500만원이 생겼다. 입금된 지 48시간.",
+    question: "당신이 가장 먼저 하는 행동은?",
+    options: [
+      { main: "타이밍 먼저 본다", sub: "지금이 움직일 때인지 따진다", score: {A:3,B:1,C:0,D:0} },
+      { main: "일단 넣어두고 관망", sub: "섣불리 움직이기 싫다", score: {A:1,B:2,C:0,D:1} },
+      { main: "쓸 데 정하고 분배", sub: "목적이 생기면 바로 행동한다", score: {A:0,B:0,C:3,D:0} },
+      { main: "손 안 댄다", sub: "잘못 움직이면 잃을 것 같다", score: {A:0,B:0,C:0,D:3} }
+    ]
+  },
+  {
+    tag: "Scenario 02 · 기회",
+    scene: "신뢰하는 지인이 \"지금이 진짜 타이밍\"이라며 투자를 권했다. 결정 시한은 3일.",
+    question: "당신의 첫 번째 반응은?",
+    options: [
+      { main: "직접 데이터 뒤진다", sub: "타이밍이 맞는지 검증부터", score: {A:3,B:1,C:0,D:0} },
+      { main: "다른 사람들한테 더 물어본다", sub: "확신이 쌓여야 움직인다", score: {A:0,B:3,C:0,D:0} },
+      { main: "소액으로 일단 들어간다", sub: "해보면서 판단한다", score: {A:0,B:0,C:3,D:0} },
+      { main: "결국 못 들어간다", sub: "잃으면 어쩌나가 더 크다", score: {A:0,B:1,C:0,D:3} }
+    ]
+  },
+  {
+    tag: "Scenario 03 · 지연",
+    scene: "6개월 전부터 \"해야지\" 했던 일이 아직도 안 되어 있다.",
+    question: "그 이유를 꼽는다면?",
+    options: [
+      { main: "때가 안 됐던 것 같다", sub: "지금도 타이밍을 보고 있다", score: {A:3,B:0,C:0,D:0} },
+      { main: "정보가 아직 부족하다", sub: "더 알아봐야 확신이 생긴다", score: {A:0,B:3,C:0,D:0} },
+      { main: "급한 일이 항상 먼저였다", sub: "닥쳐야 움직이는 편이다", score: {A:0,B:0,C:3,D:0} },
+      { main: "잘못되면 어쩌나 싶었다", sub: "리스크가 막았다", score: {A:0,B:0,C:0,D:3} }
+    ]
+  },
+  {
+    tag: "Scenario 04 · 선택",
+    scene: "A안은 안전하지만 수익이 작다. B안은 리스크가 있지만 기회가 크다. 결정은 오늘.",
+    question: "당신의 선택 기준은?",
+    options: [
+      { main: "지금 내 상황이 B를 감당할 때인가", sub: "타이밍이 기준이다", score: {A:3,B:0,C:0,D:0} },
+      { main: "정보가 더 있으면 B인데", sub: "확신이 없으니 A로 간다", score: {A:0,B:3,C:0,D:1} },
+      { main: "일단 A, 다음 기회에 B", sub: "지금 문제 해결이 먼저", score: {A:0,B:0,C:3,D:0} },
+      { main: "B가 잘못되는 장면이 안 지워진다", sub: "안전이 항상 이긴다", score: {A:0,B:0,C:0,D:3} }
+    ]
+  },
+  {
+    tag: "Scenario 05 · 점검",
+    scene: "친구가 \"보험 한번 정리했더니 완전 달라졌다\"고 했다.",
+    question: "그 말을 들은 당신은?",
+    options: [
+      { main: "나도 지금 타이밍인지 생각해본다", sub: "때가 맞으면 바로 움직인다", score: {A:3,B:0,C:0,D:0} },
+      { main: "나중에 알아봐야지 하고 넘긴다", sub: "아직 확신이 없다", score: {A:0,B:3,C:1,D:0} },
+      { main: "당장 빠진 게 있나 찾아본다", sub: "문제가 있으면 바로 해결", score: {A:0,B:0,C:3,D:0} },
+      { main: "내 거 잘못된 게 있으면 어떡하나 걱정된다", sub: "불안한데 손대기가 무섭다", score: {A:0,B:0,C:0,D:3} }
+    ]
+  },
+  {
+    tag: "Scenario 06 · 후회",
+    scene: "1년 전 결정 하나가 계속 마음에 걸린다.",
+    question: "그 결정은 어떤 종류였나?",
+    options: [
+      { main: "더 좋은 타이밍에 했어야 했던 것", sub: "시점이 틀렸다", score: {A:3,B:0,C:0,D:0} },
+      { main: "정보가 부족한 채로 했던 것", sub: "더 알았더라면 달랐을 것", score: {A:0,B:3,C:0,D:0} },
+      { main: "그냥 빠르게 처리해버린 것", sub: "좀 더 신중했어야 했다", score: {A:0,B:0,C:3,D:0} },
+      { main: "너무 겁내서 못 했던 것", sub: "그냥 해버릴걸", score: {A:0,B:0,C:0,D:3} }
+    ]
+  }
+];
+
+const types = {
+  A: {
+    name: "타이밍\n감지형",
+    code: "TYPE-A · TIMING SENSOR",
+    bg: "A",
+    desc: "데이터와 상황이 맞아떨어지는 시점을 감지한 뒤 결정을 내리는 유형입니다. 서두르지 않지만 때가 왔을 때는 빠릅니다. 결정의 질이 높고 후회가 적습니다.",
+    stats: [{ v:"76.9%", l:"D-Index 70+\n결정 성공률" }, { v:"3회↑", l:"평균 상담\n세션수" }],
+    insight: "타이밍을 아는 사람도 보장만큼은 타이밍이 없습니다. 건강 상태, 나이, 상품 조건 — 지금이 가장 유리한 시점입니다.",
+    ctaTitle: "지금이 가장 유리한 조건입니다",
+    cta: "메리츠화재 RCM과 현재 보장 상태를 확인해보세요.",
+    partner: "메리츠화재 RCM · 보장 타이밍 점검 전문 상담"
+  },
+  B: {
+    name: "분석\n지연형",
+    code: "TYPE-B · ANALYSIS LOOP",
+    bg: "B",
+    desc: "충분한 정보가 쌓이고 확신이 생겼을 때 비로소 움직이는 신중한 유형입니다. 한 번 결정하면 흔들리지 않지만, 타이밍을 놓치는 비용이 발생하기도 합니다.",
+    stats: [{ v:"60%", l:"3회차 이후\n결정 전환율" }, { v:"41%", l:"1회차\n결정률" }],
+    insight: "보장은 유일하게 정보가 많아질수록 불리해지는 영역입니다. 알면 알수록 가입 조건은 좁아집니다.",
+    ctaTitle: "더 알기 전에 먼저 갖춰두는 것들이 있습니다",
+    cta: "메리츠화재 RCM과 지금 보장 상태를 점검해보세요.",
+    partner: "메리츠화재 RCM · 꼼꼼한 설명 기반 1:1 상담"
+  },
+  C: {
+    name: "목적\n달성형",
+    code: "TYPE-C · GOAL RESOLVER",
+    bg: "C",
+    desc: "지금 당장의 문제 해결에 집중하는 실행형입니다. 목적이 명확할 때 누구보다 빠르게 움직이지만, 해결되고 나면 후속 관리에 소홀해지는 패턴이 있습니다.",
+    stats: [{ v:"높음", l:"단기 문제\n해결 집중도" }, { v:"선제↑", l:"점검 필요\n우선순위" }],
+    insight: "보장의 목적은 문제가 생겼을 때입니다. 그런데 문제가 생기면 이미 늦습니다.",
+    ctaTitle: "문제가 없을 때 해두는 것입니다",
+    cta: "메리츠화재 RCM과 미리 보장 구조를 갖춰두세요.",
+    partner: "메리츠화재 RCM · 빠르고 명확한 현황 점검 상담"
+  },
+  D: {
+    name: "리스크\n회피형",
+    code: "TYPE-D · RISK SHIELD",
+    bg: "D",
+    desc: "잃지 않는 것을 최우선으로 생각하는 유형입니다. 결정이 느리지만 한 번 내린 결정은 탄탄합니다. 불확실성에 대한 불안을 줄여줄 안전한 근거가 있을 때 비로소 움직입니다.",
+    stats: [{ v:"최상위", l:"손실 회피\n우선도" }, { v:"깊음", l:"결정 전\n검토 깊이" }],
+    insight: "리스크를 가장 두려워하는 사람이 보장을 가장 미루는 역설. 불안의 해소가 곧 보장입니다.",
+    ctaTitle: "불안을 없애는 가장 확실한 방법",
+    cta: "메리츠화재 RCM과 함께 보장 공백을 채워보세요.",
+    partner: "메리츠화재 RCM · 꼼꼼한 보장 분석 전문 상담"
+  }
+};
+
+let cur = 0;
+let scores = {A:0,B:0,C:0,D:0};
+const stepLabels = ["목돈","기회","지연","선택","점검","후회"];
+
+const CONSULT_LINK = "https://open.kakao.com/o/siJp2kyi";
+
+function initSteps() {
+  const el = document.getElementById('sidebarSteps');
+  el.innerHTML = stepLabels.map((l,i) => `
+    <div class="s-step" id="step-${i}">
+      <div class="s-dot"></div>
+      <span>${String(i+1).padStart(2,'0')} ${l}</span>
+    </div>`).join('');
+}
+
+function updateSteps(idx) {
+  stepLabels.forEach((_,i) => {
+    const el = document.getElementById('step-'+i);
+    el.className = 's-step' + (i<idx?' done':i===idx?' active':'');
+  });
+  document.getElementById('bignum').textContent = String(idx+1).padStart(2,'0');
+  document.getElementById('qCounter').textContent = `${String(idx+1).padStart(2,'0')} / 06`;
+  document.getElementById('progressFill').style.width = (idx/scenarios.length*100)+'%';
+}
+
+function startQuiz() {
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('quiz').classList.add('active');
+  initSteps();
+  render();
+}
+
+function render() {
+  const s = scenarios[cur];
+  updateSteps(cur);
+
+  const tag = document.getElementById('qTag');
+  const scene = document.getElementById('qScene');
+  const question = document.getElementById('qQuestion');
+
+  [tag,scene,question].forEach(el => el.classList.remove('vis'));
+
+  tag.textContent = s.tag;
+  scene.textContent = s.scene;
+  question.textContent = s.question;
+
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    tag.classList.add('vis');
+    scene.classList.add('vis');
+    question.classList.add('vis');
+  }));
+
+  const wrap = document.getElementById('optionsWrap');
+  wrap.innerHTML = '';
+  // 선지 순서 랜덤 셔플
+  const shuffled = [...s.options].sort(() => Math.random() - 0.5);
+
+  shuffled.forEach((opt,i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.innerHTML = `
+      <span class="opt-marker">${String.fromCharCode(65+i)}</span>
+      <span class="opt-text">
+        <span class="opt-main">${opt.main}</span>
+        <span class="opt-sub">${opt.sub}</span>
+      </span>`;
+    btn.onclick = () => pick(opt.score, btn);
+    wrap.appendChild(btn);
+    setTimeout(() => btn.classList.add('vis'), 100 + i*70);
+  });
+}
+
+function pick(score, btn) {
+  document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  btn.classList.add('selected');
+  Object.keys(score).forEach(k => scores[k] += score[k]);
+  setTimeout(() => {
+    cur++;
+    if (cur < scenarios.length) render();
+    else showResult();
+  }, 350);
+}
+
+function showResult() {
+  document.getElementById('quiz').classList.remove('active');
+  document.getElementById('quiz').style.display = 'none';
+
+  const dominant = Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
+  const t = types[dominant];
+
+  document.getElementById('resBgLetter').textContent = dominant;
+  document.getElementById('resName').style.whiteSpace = 'pre-line';
+  document.getElementById('resName').textContent = t.name;
+  document.getElementById('resCode').textContent = t.code;
+  document.getElementById('resDesc').textContent = t.desc;
+  document.getElementById('resInsight').textContent = t.insight;
+  document.getElementById('resCtaTitle').textContent = t.ctaTitle || '';
+  document.getElementById('resCtaText').textContent = t.cta;
+  document.getElementById('resPartnerLine').textContent = t.partner;
+  // 증빙용 ref 파라미터 생성 (유진 소개 건 식별)
+  const refId = 'HYJ-' + dominant + '-' + Date.now().toString(36).toUpperCase();
+  const ctaUrl = CONSULT_LINK === '#' ? '#' : CONSULT_LINK + '?ref=HYJ&type=' + dominant + '&id=' + refId;
+  document.getElementById('resCtaBtn').href = ctaUrl;
+  document.getElementById('resRefId').textContent = '분석 ID · ' + refId;
+
+  document.getElementById('resStats').innerHTML = t.stats.map(s => `
+    <div>
+      <div class="rs-val">${s.v}</div>
+      <div class="rs-lbl">${s.l}</div>
+    </div>`).join('');
+
+  document.getElementById('result').classList.add('active');
+  document.getElementById('result').style.display = 'block';
+}
+
+function restartQuiz() {
+  cur = 0;
+  scores = {A:0,B:0,C:0,D:0};
+  document.getElementById('result').classList.remove('active');
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('quiz').style.display = 'grid';
+  document.getElementById('quiz').classList.add('active');
+  render();
+}
+</script>
+</body>
+</html>
